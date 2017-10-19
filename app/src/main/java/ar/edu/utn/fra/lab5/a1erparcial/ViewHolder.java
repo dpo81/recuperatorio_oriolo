@@ -9,22 +9,53 @@ import android.widget.TextView;
  * Created by lkdml on 03/10/2017.
  */
 
-public class ViewHolder  extends RecyclerView.ViewHolder implements  View.OnClickListener{
+public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    TextView nombre;
-    TextView apellido;
-    TextView telefono;
-    ImageView img;
-    ItemClickListener listener;
+    private TextView nombre;
+    private TextView apellido;
+    private TextView telefono;
+    private ImageView img;
+    private ItemClickListener listener;
+    private int position;
+//
+//    public ViewHolder(View itemView, ItemClickListener listener) {
+//        super(itemView);
+//        //TODO: Completar lo que falta acceder a los elementos view y setear el listener
+//
+//    }
 
-    public ViewHolder(View itemView, ItemClickListener listener) {
+    public ViewHolder(View itemView) {
         super(itemView);
-        //TODO: Completar lo que falta acceder a los elementos view y setear el listener
 
+        this.nombre = (TextView) itemView.findViewById(R.id.vh_nombre);
+        this.apellido = (TextView) itemView.findViewById(R.id.vh_apellido);
+        this.telefono = (TextView) itemView.findViewById(R.id.vh_telefono);
     }
+
+//
+//    @Override
+//    public void onClick(View v) {
+//        this.listener.onItemClick(v,getAdapterPosition());
+//    }
 
     @Override
     public void onClick(View v) {
-        this.listener.onItemClick(v,getAdapterPosition());
+        listener.onItemClick(position);
+    }
+
+    public TextView getNombre() {
+        return nombre;
+    }
+
+    public TextView getApellido() {
+        return apellido;
+    }
+
+    public TextView getTelefono() {
+        return telefono;
+    }
+
+    public ImageView getImg() {
+        return img;
     }
 }

@@ -14,34 +14,66 @@ import java.util.List;
  */
 
 
-public class Adapter extends RecyclerView.Adapter<ViewHolder>{
+public class Adapter extends RecyclerView.Adapter<ViewHolder> {
     LayoutInflater mLInflater;
     List<Modelo> contactos;
-    ItemClickListener listener;
+//    ItemClickListener listener;
 
-    public Adapter(Context context, List<Modelo> modelo, ItemClickListener listener) {
-        this.mLInflater = LayoutInflater.from(context);
+//    public Adapter(Context context, List<Modelo> modelo, ItemClickListener listener) {
+//        this.contactos = modelo;
+//        //TODO: Crear Interface ItemClickListener
+//        this.listener = listener;
+//    }
+//
+
+    public Adapter(List<Modelo> modelo) {
         this.contactos = modelo;
-        //TODO: Crear Interface ItemClickListener
-        this.listener = listener;
     }
+
+
+//    @Override
+//    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//        //TODO: completar lo que falta
+//    }
+//
+//    @Override
+//    public void onBindViewHolder(ViewHolder holder, int position) {
+//        //TODO: completar lo que falta
+//
+//
+//    }
+//
+//    @Override
+//    public int getItemCount() {
+//        //TODO: completar lo que falta
+//    }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //TODO: completar lo que falta
+
+//
+//        imageView = (NetworkImageView) itemView.findViewById(R.id.image);
+//        priceView = (TextView) itemView.findViewById(R.id.price);
+//        itemView.setOnClickListener(clickListener);
+//
+        this.mLInflater = LayoutInflater.from(parent.getContext());
+        View v = (View) this.mLInflater.inflate(R.layout.holder, parent, false);
+        ViewHolder vh = new ViewHolder(v);
+        return vh;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        //TODO: completar lo que falta
+        Modelo m = contactos.get(position);
 
-
+        holder.getNombre().setText(m.getNombre());
+        holder.getApellido().setText(m.getApellido());
+        holder.getTelefono().setText(m.getTelefono());
     }
 
     @Override
     public int getItemCount() {
-        //TODO: completar lo que falta
+        return contactos.size();
     }
-
-
 }

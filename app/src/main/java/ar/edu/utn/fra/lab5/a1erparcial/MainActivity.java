@@ -1,27 +1,18 @@
 package ar.edu.utn.fra.lab5.a1erparcial;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+//import android.support.v7.widget.GridLayoutManager;
+//import android.support.v7.widget.RecyclerView;
+
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
+public class MainActivity extends AppCompatActivity implements ItemClickListener {// implements View.OnClickListener{
 
     /*TODO:
     * 1.- Completar lo necesario para que compile
@@ -41,12 +32,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     //TODO: Limpiar MainActivity, pasando lo necesario a las clases Controlador y VistaControlador para usar MVC
-    Adapter adaptador;
-    ImageView imgContacto;
-    TextView main_nombre;
-    TextView main_telefono;
+//    Adapter adaptador;
+//    ImageView imgContacto;
+//    TextView main_nombre;
+//    TextView main_telefono;
     List<Modelo> contactos;
-    Button btn_llamar;
+//    Button btn_llamar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +45,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
 
-        imgContacto= (ImageView) this.findViewById(R.id.vh_img);
-        main_nombre = (TextView) this.findViewById(R.id.main_nombre);
-        main_telefono = (TextView) this.findViewById(R.id.main_telefono);
-        btn_llamar = (Button) this.findViewById(R.id.btn_llamar);
-        btn_llamar.setOnClickListener(this);
+//        imgContacto= (ImageView) this.findViewById(R.id.vh_img);
+//        main_nombre = (TextView) this.findViewById(R.id.main_nombre);
+//        main_telefono = (TextView) this.findViewById(R.id.main_telefono);
+//        btn_llamar = (Button) this.findViewById(R.id.btn_llamar);
+//        btn_llamar.setOnClickListener(this);
 
         contactos = new ArrayList<Modelo>();
         contactos.add(new Modelo("Juan", "Garcia", "4444-4444"));
@@ -80,42 +71,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         contactos.add(new Modelo("Osvaldo", "Ramallo", "7345-4444"));
         contactos.add(new Modelo("Alfredo", "Garcia", "2364-2346"));
 
-        RecyclerView rv = (RecyclerView)this.findViewById(R.id.rv1);
-        //TODO: conectar el recyclerView con los objetos que corresponde.
-
-    }
-
-
-
-
-
-    @Override
-    public void onClick(View v) {
-        //TODO: completar lo que falta
-
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 0);
-        }else{
-            startActivity(callIntent);
-        }
+        RecyclerView rv = (RecyclerView) this.findViewById(R.id.rv1);
+        RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
+        rv.setLayoutManager(lm);
+        Adapter a = new Adapter(contactos);
+        rv.setAdapter(a);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //TODO: Cargar menu desde archivo xml
-        return true;
+    public void onItemClick(int position) {
+
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.salir:
-                //TODO: Completar para salir de la aplicacion
-                break;
-            case R.id.nuevo:
-                //TODO: mostrar texto por consola
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//
+//
+//    @Override
+//    public void onClick(View v) {
+//        //TODO: completar lo que falta
+//
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 0);
+//        }else{
+//            startActivity(callIntent);
+//        }
+//    }
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        //TODO: Cargar menu desde archivo xml
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()){
+//            case R.id.salir:
+//                //TODO: Completar para salir de la aplicacion
+//                break;
+//            case R.id.nuevo:
+//                //TODO: mostrar texto por consola
+//                break;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 }
