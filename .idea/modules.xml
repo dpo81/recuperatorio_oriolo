@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PrimerParcial-paraCompletar.iml" filepath="$PROJECT_DIR$/PrimerParcial-paraCompletar.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/recuperatorio_oriolo.iml" filepath="$PROJECT_DIR$/recuperatorio_oriolo.iml" />
       <module fileurl="file://$PROJECT_DIR$/recuperatorio_oriolo.iml" filepath="$PROJECT_DIR$/recuperatorio_oriolo.iml" />
     </modules>
   </component>
