@@ -13,53 +13,26 @@ import java.util.List;
  * Created by lkdml on 03/10/2017.
  */
 
-
 public class Adapter extends RecyclerView.Adapter<ViewHolder> {
     LayoutInflater mLInflater;
     List<Modelo> contactos;
-//    ItemClickListener listener;
+    ItemClickListener listener;
 
-//    public Adapter(Context context, List<Modelo> modelo, ItemClickListener listener) {
-//        this.contactos = modelo;
-//        //TODO: Crear Interface ItemClickListener
-//        this.listener = listener;
-//    }
-//
-
-    public Adapter(List<Modelo> modelo) {
+    public Adapter(List<Modelo> modelo,  ItemClickListener listener) {
+//  public Adapter(Context context, List<Modelo> modelo, ItemClickListener listener) {
         this.contactos = modelo;
+        this.listener = listener;
     }
-
-
-//    @Override
-//    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        //TODO: completar lo que falta
-//    }
-//
-//    @Override
-//    public void onBindViewHolder(ViewHolder holder, int position) {
-//        //TODO: completar lo que falta
-//
-//
-//    }
-//
-//    @Override
-//    public int getItemCount() {
-//        //TODO: completar lo que falta
-//    }
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-//
 //        imageView = (NetworkImageView) itemView.findViewById(R.id.image);
 //        priceView = (TextView) itemView.findViewById(R.id.price);
 //        itemView.setOnClickListener(clickListener);
-//
+
         this.mLInflater = LayoutInflater.from(parent.getContext());
         View v = (View) this.mLInflater.inflate(R.layout.holder, parent, false);
-        ViewHolder vh = new ViewHolder(v);
+        ViewHolder vh = new ViewHolder(v, listener);
         return vh;
     }
 
@@ -70,6 +43,7 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
         holder.getNombre().setText(m.getNombre());
         holder.getApellido().setText(m.getApellido());
         holder.getTelefono().setText(m.getTelefono());
+        holder.setPosicion(position);
     }
 
     @Override

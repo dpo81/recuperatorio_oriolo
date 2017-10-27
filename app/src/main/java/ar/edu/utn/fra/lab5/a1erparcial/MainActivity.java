@@ -11,8 +11,9 @@ import java.util.List;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
-public class MainActivity extends AppCompatActivity implements ItemClickListener {// implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements ItemClickListener {
 
     /*TODO:
     * 1.- Completar lo necesario para que compile
@@ -74,13 +75,14 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
         RecyclerView rv = (RecyclerView) this.findViewById(R.id.rv1);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
         rv.setLayoutManager(lm);
-        Adapter a = new Adapter(contactos);
+        Adapter a = new Adapter(contactos, this);
         rv.setAdapter(a);
     }
 
     @Override
     public void onItemClick(int position) {
 
+        Log.d("test click item", String.valueOf(position));
     }
 
 //

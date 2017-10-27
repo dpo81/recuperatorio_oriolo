@@ -16,23 +16,24 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     private TextView telefono;
     private ImageView img;
     private ItemClickListener listener;
-    private int position;
-//
+    private int posicion;
+
 //    public ViewHolder(View itemView, ItemClickListener listener) {
 //        super(itemView);
 //        //TODO: Completar lo que falta acceder a los elementos view y setear el listener
 //
 //    }
 
-    public ViewHolder(View itemView) {
+    public ViewHolder(View itemView, ItemClickListener listener) {
         super(itemView);
 
         this.nombre = (TextView) itemView.findViewById(R.id.vh_nombre);
         this.apellido = (TextView) itemView.findViewById(R.id.vh_apellido);
         this.telefono = (TextView) itemView.findViewById(R.id.vh_telefono);
+        this.listener = listener;
+        //this.setOnClikListener(this);
     }
 
-//
 //    @Override
 //    public void onClick(View v) {
 //        this.listener.onItemClick(v,getAdapterPosition());
@@ -40,7 +41,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        listener.onItemClick(position);
+        listener.onItemClick(this.getPosicion());
     }
 
     public TextView getNombre() {
@@ -57,5 +58,13 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     public ImageView getImg() {
         return img;
+    }
+
+    public int getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
     }
 }
