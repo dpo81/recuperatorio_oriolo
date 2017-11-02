@@ -9,9 +9,14 @@ import java.util.List;
 //import android.support.v7.widget.GridLayoutManager;
 //import android.support.v7.widget.RecyclerView;
 
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements ItemClickListener {
 
@@ -34,23 +39,23 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
 
     //TODO: Limpiar MainActivity, pasando lo necesario a las clases Controlador y VistaControlador para usar MVC
 //    Adapter adaptador;
-//    ImageView imgContacto;
-//    TextView main_nombre;
-//    TextView main_telefono;
+    ImageView imgContacto;
+    TextView main_nombre;
+    TextView main_telefono;
     List<Modelo> contactos;
-//    Button btn_llamar;
+    Button btn_llamar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-//        imgContacto= (ImageView) this.findViewById(R.id.vh_img);
-//        main_nombre = (TextView) this.findViewById(R.id.main_nombre);
-//        main_telefono = (TextView) this.findViewById(R.id.main_telefono);
-//        btn_llamar = (Button) this.findViewById(R.id.btn_llamar);
-//        btn_llamar.setOnClickListener(this);
+        imgContacto= (ImageView) this.findViewById(R.id.img_contacto);
+        main_nombre = (TextView) this.findViewById(R.id.main_nombre);
+        main_telefono = (TextView) this.findViewById(R.id.main_telefono);
+        btn_llamar = (Button) this.findViewById(R.id.btn_llamar);
+        View.OnClickListener onClickListener = new OnClickListener(this);
+        btn_llamar.setOnClickListener(onClickListener);
 
         contactos = new ArrayList<Modelo>();
         contactos.add(new Modelo("Juan", "Garcia", "4444-4444"));
@@ -73,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
         contactos.add(new Modelo("Alfredo", "Garcia", "2364-2346"));
 
         RecyclerView rv = (RecyclerView) this.findViewById(R.id.rv1);
-        RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager lm = new GridLayoutManager(this, 2);
         rv.setLayoutManager(lm);
         Adapter a = new Adapter(contactos, this);
         rv.setAdapter(a);
@@ -82,7 +87,11 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
     @Override
     public void onItemClick(int position) {
 
-        Log.d("test click item", String.valueOf(position));
+       // Log.d("test click item", String.valueOf(position));
+
+        main_nombre.setText(contactos.get(position).toString());
+        main_telefono.setText(contactos.get(position).getTelefono());
+
     }
 
 //

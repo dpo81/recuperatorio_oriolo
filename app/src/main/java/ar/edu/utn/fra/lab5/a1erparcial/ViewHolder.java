@@ -31,7 +31,7 @@ public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         this.apellido = (TextView) itemView.findViewById(R.id.vh_apellido);
         this.telefono = (TextView) itemView.findViewById(R.id.vh_telefono);
         this.listener = listener;
-        //this.setOnClikListener(this);
+        itemView.setOnClickListener(this);
     }
 
 //    @Override

@@ -38,4 +38,9 @@ public class Modelo {
     private String Nombre;
     private String Apellido;
     private String telefono;
+
+    @Override
+    public String toString() {
+        return  Apellido + ", " + Nombre;
+    }
 }
